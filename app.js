@@ -42,8 +42,14 @@ const populateTable = async (countryName) => {
     const country = await getCountryByName(countryName);
     const table = document.getElementById('countryTable');
     const rows = [
-      ['Official Name', country.name.common],
-      ['Capital', country.capital]
+      ['Official Name', country.name.official],
+      ['Capital', country.capital],
+      ['Region', country.region],
+      ['Currency', Object.values(country.currencies)[0].name + " (" + Object.values(country.currencies)[0].symbol + ") "],
+      ['Population', country.population.toLocaleString()],
+      ['Area (sq km)', country.area.toLocaleString()],
+      ['Languages', Object.values(country.languages).join(', ')]
+
     ]
     rows.forEach(row => {
       const newRow = table.insertRow();
@@ -58,4 +64,4 @@ const populateTable = async (countryName) => {
 }
 
 populateCountryList();
-populateTable("peru");
+populateTable("bolivia");
