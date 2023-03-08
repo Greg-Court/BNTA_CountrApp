@@ -4,7 +4,7 @@ const getCountryByName = async (countryName) => {
   try {
     const response = await fetch(`https://restcountries.com/v3.1/name/${countryName}`);
     const data = await response.json();
-    console.log(data[0].name.nativeName);
+    return data[0];
   } catch (error) {
     console.log(error);
   }
@@ -37,12 +37,25 @@ const populateCountryList = async () => {
 }
 
 
-
-
-const generateTable = async (countryName) => {
-  
+const populateTable = async (countryName) => {
+  try {
+    const country = await getCountryByName(countryName);
+    const table = document.getElementById('countryTable');
+    const rows = [
+      ['Official Name', country.name.common],
+      ['Capital', country.capital]
+    ]
+    rows.forEach(row => {
+      const newRow = table.insertRow();
+      const cell1 = newRow.insertCell();
+      const cell2 = newRow.insertCell();
+      cell1.textContent = row[0];
+      cell2.textContent = row[1];
+    })
+  } catch (error) {
+    console.log(error);
+  }
 }
 
-
-// getCountryByName("poland");
-// populateCountryList();
+populateCountryList();
+populateTable("peru");
