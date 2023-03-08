@@ -1,4 +1,5 @@
-const countryList = document.getElementById("countryList");
+const countrySelect = document.getElementById("countrySelect");
+const submitButton = document.getElementById("submitButton");
 
 const getCountryByName = async (countryName) => {
   try {
@@ -14,17 +15,16 @@ const getAllCountries = async () => {
   try {
     const response = await fetch(`https://restcountries.com/v3.1/all`);
     const data = await response.json();
-    const countryNames = data.map(country => country.name.common);
+    const countryNames = data.map(country => country.name.common).sort();
     return countryNames;
   } catch (error) {
     console.log(error);
   }
 }
 
-const populateCountryList = async () => {
+const populateCountrySelect = async () => {
   try {
     const countryNames = await getAllCountries(); // had to use await here to resolve the Promise and get an array
-    const countryList = document.getElementById('countrySelect');
     countryNames.forEach(name => {
       const option = document.createElement('option');
       option.value = name;
@@ -41,6 +41,7 @@ const populateTable = async (countryName) => {
   try {
     const country = await getCountryByName(countryName);
     const table = document.getElementById('countryTable');
+    table.innerHTML = '';
     const rows = [
       ['Official Name', country.name.official],
       ['Capital', country.capital],
@@ -63,5 +64,15 @@ const populateTable = async (countryName) => {
   }
 }
 
-populateCountryList();
-populateTable("bolivia");
+const getCountryChoice = () => {
+  return countrySelect.value;
+}
+
+submitButton.addEventListener('click', (event) => {
+  event.preventDefault();
+  const countryName = getCountryChoice();
+  console.log(countryName);
+  populateTable(countryName);
+})
+
+populateCountrySelect();
