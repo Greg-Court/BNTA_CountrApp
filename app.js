@@ -1,8 +1,10 @@
 const countrySelect = document.getElementById("countrySelect");
 const submitButton = document.getElementById("submitButton");
+let header = document.querySelector('h1');
 
 const getCountryByName = async (countryName) => {
   try {
+    header.innerHTML = 'Fetching country data...';
     const response = await fetch(`https://restcountries.com/v3.1/name/${countryName}`);
     const data = await response.json();
     return data[0];
@@ -13,6 +15,7 @@ const getCountryByName = async (countryName) => {
 
 const getAllCountries = async () => {
   try {
+    header.innerHTML = 'Loading countries...';
     const response = await fetch(`https://restcountries.com/v3.1/all`);
     const data = await response.json();
     const countryNames = data.map(country => country.name.common).sort();
@@ -30,6 +33,7 @@ const populateCountrySelect = async () => {
       option.value = name;
       option.textContent = name;
       countrySelect.appendChild(option);
+      header.innerHTML = 'CountrApp';
     })
   } catch(error) {
     console.log(error);
@@ -59,6 +63,8 @@ const populateTable = async (countryName) => {
       cell1.textContent = row[0];
       cell2.textContent = row[1];
     })
+    header.innerHTML = 'Success!';
+    setTimeout(() => {header.innerText = "CountrApp"}, 3000);
   } catch (error) {
     console.log(error);
   }
@@ -71,8 +77,9 @@ const getCountryChoice = () => {
 submitButton.addEventListener('click', (event) => {
   event.preventDefault();
   const countryName = getCountryChoice();
-  console.log(countryName);
   populateTable(countryName);
 })
+
+
 
 populateCountrySelect();
