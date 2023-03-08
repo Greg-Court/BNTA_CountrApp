@@ -34,7 +34,7 @@ const populateCountrySelect = async () => {
       option.value = name;
       option.textContent = name;
       countrySelect.appendChild(option);
-      header.innerHTML = '<img src="./assets/globe.png" alt="logo" id="logo"> CountrApp';
+      header.innerHTML = '<img src="./assets/globe.png?" alt="logo" id="logo"> CountrApp';
     })
   } catch(error) {
     console.log(error);
@@ -66,7 +66,7 @@ const populateInformation = async (countryName) => {
     })
     displayFlag(country);
     header.innerHTML = 'Success!';
-    setTimeout(() => {header.innerHTML = '<img src="./assets/globe.png" alt="logo" id="logo"> CountrApp'}, 3000);
+    setTimeout(() => {header.innerHTML = '<img src="./assets/globe.png?" alt="logo" id="logo"> CountrApp'}, 3000);
   } catch (error) {
     console.log(error);
     alert("Error fetching country information.");
