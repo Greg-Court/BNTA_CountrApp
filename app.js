@@ -1,7 +1,7 @@
 const countrySelect = document.getElementById("countrySelect");
 const submitButton = document.getElementById("submitButton");
 let header = document.querySelector('h1');
-let flagImg = document.querySelector('img');
+let flagImg = document.querySelector('#flagImg');
 
 const getCountryByName = async (countryName) => {
   try {
@@ -34,7 +34,7 @@ const populateCountrySelect = async () => {
       option.value = name;
       option.textContent = name;
       countrySelect.appendChild(option);
-      header.innerHTML = 'CountrApp';
+      header.innerHTML = '<img src="assets/globe.png" alt="logo" id="logo"> CountrApp';
     })
   } catch(error) {
     console.log(error);
@@ -42,11 +42,12 @@ const populateCountrySelect = async () => {
 }
 
 
-const populateTable = async (countryName) => {
+const populateInformation = async (countryName) => {
   try {
     const country = await getCountryByName(countryName);
     const table = document.getElementById('countryTable');
     table.innerHTML = '';
+    resetFlag();
     const rows = [
       ['Official Name', country.name.official],
       ['Capital', country.capital],
@@ -65,9 +66,10 @@ const populateTable = async (countryName) => {
     })
     displayFlag(country);
     header.innerHTML = 'Success!';
-    setTimeout(() => {header.innerText = "CountrApp"}, 3000);
+    setTimeout(() => {header.innerHTML = '<img src="assets/globe.png" alt="logo" id="logo"> CountrApp'}, 3000);
   } catch (error) {
     console.log(error);
+    alert("Error fetching country information.");
   }
 }
 
@@ -78,12 +80,17 @@ const getCountryChoice = () => {
 submitButton.addEventListener('click', (event) => {
   event.preventDefault();
   const countryName = getCountryChoice();
-  populateTable(countryName);
+  populateInformation(countryName);
 })
 
 const displayFlag = (country) => {
-  flagImg.setAttribute('src', country.flags.png);
+  flagImg.setAttribute('src', country.flags.svg);
   flagImg.setAttribute('alt', "Selected country flag");
+}
+
+const resetFlag = () => {
+  flagImg.setAttribute('src', "");
+  flagImg.setAttribute('alt', "");
 }
 
 populateCountrySelect();

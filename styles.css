@@ -14,7 +14,7 @@ form {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 2em;
+  margin-top: 4em;
   flex-wrap: wrap;
   row-gap: 1em;
   column-gap: 1em;
@@ -57,7 +57,7 @@ td {
   border: 1px solid #fff;
 }
 
-img {
+#flagImg {
   width: auto;
   height: 20.2rem;
 }
@@ -70,4 +70,9 @@ img {
   row-gap: 1em;
   column-gap: 1em;
   align-items: center;
+}
+
+#logo {
+  position: relative;
+  top: 10px;
 }
