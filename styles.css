@@ -50,10 +50,24 @@ button:hover {
 
 table {
   border-collapse: collapse;
-  margin: 2rem auto;
 }
 
 td {
-  padding: 1rem;
+  padding: 0.85rem 1rem;
   border: 1px solid #fff;
+}
+
+img {
+  width: auto;
+  height: 20.2rem;
+}
+
+#information {
+  display: flex;
+  justify-content: center;
+  margin-top: 1em;
+  flex-wrap: wrap;
+  row-gap: 1em;
+  column-gap: 1em;
+  align-items: center;
 }

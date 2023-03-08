@@ -1,6 +1,7 @@
 const countrySelect = document.getElementById("countrySelect");
 const submitButton = document.getElementById("submitButton");
 let header = document.querySelector('h1');
+let flagImg = document.querySelector('img');
 
 const getCountryByName = async (countryName) => {
   try {
@@ -54,7 +55,6 @@ const populateTable = async (countryName) => {
       ['Population', country.population.toLocaleString()],
       ['Area (sq km)', country.area.toLocaleString()],
       ['Languages', Object.values(country.languages).join(', ')]
-
     ]
     rows.forEach(row => {
       const newRow = table.insertRow();
@@ -63,6 +63,7 @@ const populateTable = async (countryName) => {
       cell1.textContent = row[0];
       cell2.textContent = row[1];
     })
+    displayFlag(country);
     header.innerHTML = 'Success!';
     setTimeout(() => {header.innerText = "CountrApp"}, 3000);
   } catch (error) {
@@ -80,6 +81,9 @@ submitButton.addEventListener('click', (event) => {
   populateTable(countryName);
 })
 
-
+const displayFlag = (country) => {
+  flagImg.setAttribute('src', country.flags.png);
+  flagImg.setAttribute('alt', "Selected country flag");
+}
 
 populateCountrySelect();
