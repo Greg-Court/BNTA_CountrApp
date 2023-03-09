@@ -76,3 +76,8 @@ td {
   position: relative;
   top: 10px;
 }
+
+footer {
+  padding: 5em;
+  text-align: center;
+}
