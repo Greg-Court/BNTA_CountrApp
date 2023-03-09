@@ -52,7 +52,7 @@ const populateInformation = async (countryName) => {
       ['Official Name', country.name.official],
       ['Capital', country.capital],
       ['Region', country.region],
-      ['Currency', Object.values(country.currencies)[0].name + " (" + Object.values(country.currencies)[0].symbol + ") "],
+      ['Main Currency', Object.values(country.currencies)[0].name + " (" + Object.values(country.currencies)[0].symbol + ") "],
       ['Population', country.population.toLocaleString()],
       ['Area (sq km)', country.area.toLocaleString()],
       ['Languages', Object.values(country.languages).join(', ')]
