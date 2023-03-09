@@ -13,6 +13,7 @@ const getCountryByName = async (countryName) => {
     return data[0];
   } catch (error) {
     console.log(error);
+    alert("Error fetching country.");
   }
 };
 
@@ -40,6 +41,7 @@ const populateCountrySelect = async () => {
     })
   } catch(error) {
     console.log(error);
+    alert("Error populating country list.");
   }
 }
 
