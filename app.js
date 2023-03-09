@@ -2,10 +2,11 @@ const countrySelect = document.getElementById("countrySelect");
 const submitButton = document.getElementById("submitButton");
 let header = document.querySelector('h1');
 let flagImg = document.querySelector('#flagImg');
+const logo = '<img src="./assets/globe.png?" alt="logo" id="logo">';
 
 const getCountryByName = async (countryName) => {
   try {
-    header.innerHTML = 'Fetching country data...';
+    displayFetchingCountryData();
     const response = await fetch(`https://restcountries.com/v3.1/name/${countryName}`);
     const data = await response.json();
     return data[0];
@@ -34,7 +35,7 @@ const populateCountrySelect = async () => {
       option.value = name;
       option.textContent = name;
       countrySelect.appendChild(option);
-      header.innerHTML = '<img src="./assets/globe.png?" alt="logo" id="logo"> CountrApp';
+      resetHeader();
     })
   } catch(error) {
     console.log(error);
@@ -65,8 +66,8 @@ const populateInformation = async (countryName) => {
       cell2.textContent = row[1];
     })
     displayFlag(country);
-    header.innerHTML = 'Success!';
-    setTimeout(() => {header.innerHTML = '<img src="./assets/globe.png?" alt="logo" id="logo"> CountrApp'}, 3000);
+    displaySuccess();
+    setTimeout(() => {resetHeader()}, 3000);
   } catch (error) {
     console.log(error);
     alert("Error fetching country information.");
@@ -91,6 +92,18 @@ const displayFlag = (country) => {
 const resetFlag = () => {
   flagImg.setAttribute('src', "");
   flagImg.setAttribute('alt', "");
+}
+
+const resetHeader = () => {
+  header.innerHTML = `${logo} CountrApp`;
+}
+
+const displayFetchingCountryData = () => {
+  header.innerHTML = `${logo} Fetching country data...`;
+}
+
+const displaySuccess = () => {
+  header.innerHTML = `${logo} Success!`;
 }
 
 populateCountrySelect();
