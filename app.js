@@ -17,7 +17,7 @@ const getCountryByName = async (countryName) => {
 
 const getAllCountries = async () => {
   try {
-    header.innerHTML = 'Loading countries...';
+    displayLoadingCountries();
     const response = await fetch(`https://restcountries.com/v3.1/all`);
     const data = await response.json();
     const countryNames = data.map(country => country.name.common).sort();
@@ -104,6 +104,10 @@ const displayFetchingCountryData = () => {
 
 const displaySuccess = () => {
   header.innerHTML = `${logo} Success!`;
+}
+
+const displayLoadingCountries = () => {
+  header.innerHTML = `${logo} Loading countries...`;
 }
 
 populateCountrySelect();
