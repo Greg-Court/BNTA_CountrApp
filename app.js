@@ -20,8 +20,9 @@ const getCountryByName = async (countryName) => {
 const getAllCountries = async () => {
   try {
     displayLoadingCountries();
-    const response = await fetch(`https://restcountries.com/v3.1/all`);
-    const data = await response.json();
+    const response = await fetch(`https://restcountries.com/v3.1/all`); // returns a Promise that resolves to a Response object when the request is complete.
+    // Response object represents the response to the request
+    const data = await response.json(); // extract the JSON data from the response body
     const countryNames = data.map(country => country.name.common).sort();
     return countryNames;
   } catch (error) {
