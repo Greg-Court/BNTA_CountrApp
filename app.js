@@ -1,5 +1,6 @@
 const countrySelect = document.getElementById("countrySelect");
 const submitButton = document.getElementById("submitButton");
+const table = document.getElementById('countryTable');
 let header = document.querySelector('h1');
 let flagImg = document.querySelector('#flagImg');
 const logo = '<img src="./assets/globe.png?" alt="logo" id="logo">';
@@ -42,11 +43,9 @@ const populateCountrySelect = async () => {
   }
 }
 
-
 const populateInformation = async (countryName) => {
   try {
     const country = await getCountryByName(countryName);
-    const table = document.getElementById('countryTable');
     table.innerHTML = '';
     resetFlag();
     const rows = [
