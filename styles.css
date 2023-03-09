@@ -81,3 +81,12 @@ footer {
   padding: 5em;
   text-align: center;
 }
+
+@media (max-width: 900px) {
+  table, #flagImg, select, button {
+    width: 90%;
+  }
+  #flagImg {
+    height: auto;
+  }
+}
