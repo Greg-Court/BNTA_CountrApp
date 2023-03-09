@@ -17,7 +17,7 @@ const getCountryByName = async (countryName) => {
   }
 };
 
-const getAllCountries = async () => {
+const getAllCountries = async () => { // returns a Promise
   try {
     displayLoadingCountries();
     const response = await fetch(`https://restcountries.com/v3.1/all`); // returns a Promise that resolves to a Response object when the request is complete.
